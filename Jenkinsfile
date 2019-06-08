@@ -36,8 +36,9 @@ pipeline {
                    echo "------------------------------------------------"
                    sleep 2
                    cd microservices-artifacts
+									 docker login --username $USERNAME --password $PASSWORD
                    docker build -t yousefsedky/${env.BRANCH_NAME}:$VERSION .
-  								 docker login --username $USERNAME --password $PASSWORD
+  								 //docker login --username $USERNAME --password $PASSWORD
   								 docker push yousefsedky/${env.BRANCH_NAME}:$VERSION
   								 sudo docker rmi yousefsedky/${env.BRANCH_NAME}:$VERSION
                    rm -r Dockerfile
