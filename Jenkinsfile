@@ -27,8 +27,8 @@ pipeline {
 							sh """
 
                    echo "Generate Dockerfile..."
-                   cp Dockerfiles/Dockerfile-template ../microservices-artifacts/Dockerfile
-                   sed -i -e "s/ARTIFACT/$ARTIFACT/g" ../microservices-artifacts/Dockerfile
+                   cp Dockerfiles/Dockerfile-template microservices-artifacts/Dockerfile
+                   sed -i -e "s/ARTIFACT/$ARTIFACT/g" microservices-artifacts/Dockerfile
 
                    echo "Dockerfile: "
                    echo "------------"
@@ -36,11 +36,11 @@ pipeline {
                    echo "------------------------------------------------"
                    sleep 2
 
-                   docker build -t yousefsedky/${env.BRANCH_NAME}:$VERSION ../microservices-artifacts/Dockerfile
+                   docker build -t yousefsedky/${env.BRANCH_NAME}:$VERSION microservices-artifacts/Dockerfile
   								 docker login --username $USERNAME --password $PASSWORD
   								 docker push yousefsedky/${env.BRANCH_NAME}:$VERSION
   								 sudo docker rmi yousefsedky/${env.BRANCH_NAME}:$VERSION
-                   rm -r ../microservices-artifacts/Dockerfile
+                   rm -r microservices-artifacts/Dockerfile
 
 							"""
 						    }}}}
@@ -52,11 +52,11 @@ pipeline {
 			steps {
 			    script {
                   sh """
-                      cp -r microservices/deployment/${env.BRANCH_NAME}/ ./microservices-deploy/${env.BRANCH_NAME}
-                           sed -i -e "s/VERSION/$VERSION/g" ./microservices-deploy/${env.BRANCH_NAME}/values.yaml
-                           sed -i -e "s/VERSION/$VERSION/g" ./microservices-deploy/${env.BRANCH_NAME}/Chart.yaml
-                           helm install --name axiom-${env.BRANCH_NAME} -f values.yaml ./microservices-deploy/${env.BRANCH_NAME} --namespace ${env.BRANCH_NAME}
-                           rm -r ./microservices-deploy/${env.BRANCH_NAME}
+                      cp -r microservices/deployment/${env.BRANCH_NAME}/  microservices-deploy/${env.BRANCH_NAME}
+                           sed -i -e "s/VERSION/$VERSION/g"  microservices-deploy/${env.BRANCH_NAME}/values.yaml
+                           sed -i -e "s/VERSION/$VERSION/g"  microservices-deploy/${env.BRANCH_NAME}/Chart.yaml
+                           helm install --name axiom-${env.BRANCH_NAME} -f values.yaml  microservices-deploy/${env.BRANCH_NAME} --namespace ${env.BRANCH_NAME}
+                           rm -r  microservices-deploy/${env.BRANCH_NAME}
 
                      """
 					        }}}
