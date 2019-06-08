@@ -1,5 +1,5 @@
 pipeline {
-
+				agent any
 		environment {
             VERSION= "1.0.1"  // still ??
             ARTIFACT="countries-assembly-1.0.1.jar";     //still ??
