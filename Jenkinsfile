@@ -36,7 +36,7 @@ pipeline {
                    echo "------------------------------------------------"
                    sleep 2
 
-                   docker build -t yousefsedky/${env.BRANCH_NAME}:$VERSION microservices-artifacts/Dockerfile
+                   docker build -t axiom/${env.BRANCH_NAME}:$VERSION microservices-artifacts/Dockerfile
   								 docker login --username $USERNAME --password $PASSWORD
   								 docker push yousefsedky/${env.BRANCH_NAME}:$VERSION
   								 sudo docker rmi yousefsedky/${env.BRANCH_NAME}:$VERSION
