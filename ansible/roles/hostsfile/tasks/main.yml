@@ -1,0 +1,24 @@
+---
+
+- name: get minikube ip
+  command: minikube ip
+  register: minikube_output
+
+- name: update etc hosts
+  sudo: yes
+  blockinfile:
+    path: /etc/hosts
+    block: |
+      '{{ minikube_output.stdout }}  slachtec.local.jenkins'
+      '{{ minikube_output.stdout }}  slachtec.local.counrties'
+      '{{ minikube_output.stdout }}  slachtec.local.airports'
+    state: present
+  check_mode: yes
+
+
+#- name: update etc hosts
+#  sudo: yes
+#  lineinfile:
+#    path: /etc/hosts
+#    line: '{{ minikube_output.stdout }}  slachtec.local.counrties'
+#    state: present

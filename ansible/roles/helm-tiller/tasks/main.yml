@@ -1,0 +1,9 @@
+---
+- name: create service account tiller
+  command: kubectl create serviceaccount tiller -n kube-system
+
+- name: grant cluster-admin role to tiller
+  command: kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
+
+- name: start helm with SA tiller
+  command: helm init --service-account tiller

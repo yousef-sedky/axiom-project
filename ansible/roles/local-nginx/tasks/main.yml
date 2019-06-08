@@ -1,0 +1,6 @@
+---
+- name: install nginx using homebrew
+  homebrew:
+    name: nginx
+    state: present
+    #service: enabled

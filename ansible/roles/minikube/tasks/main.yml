@@ -1,0 +1,42 @@
+---
+- name: check minikube if exists
+  stat:
+    path: /usr/local/bin/minikube
+  register: status_result
+
+- name: install minikube
+  command: curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.27.0/minikube-darwin-amd64
+  when: status_result.stat.exists == False
+
+- name: permission access
+  file:
+    dest: minikube
+    mode: +x
+
+- name: move minikube file
+  sudo: yes
+  sudo_user: root
+  copy: remote_src=True src=minikube dest=/usr/local/bin/
+  when: status_result.stat.exists == False
+
+- name: stop minikube (if already installed)
+  command: minikube stop
+  ignore_errors: True
+
+- name: delete minikube (if already installed)
+  command: minikube delete
+  ignore_errors: True
+
+- name: clean old minikube files under machines folder
+  file:
+    path: ~/.minikube/machines/
+    state: absent
+
+- name: start minikube
+  command: minikube start
+
+- name: checkup k8s api-versions
+  command: kubectl api-versions
+
+- name: install ingress controller on minikube
+  command: minikube addons enable ingress

@@ -1,0 +1,64 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: airports-assembly
+  labels:
+    app.kubernetes.io/name: airports-assembly
+    helm.sh/chart: airports-1.1.0
+    app.kubernetes.io/instance: airports
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 2
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: airports-assembly
+      app.kubernetes.io/instance: airports
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: airports-assembly
+        app.kubernetes.io/instance: airports
+      #annotations:
+      #  timestamp: ""
+
+    spec:
+      containers:
+        - name: airports
+          image: "yousefsedky/airports-assembly:1.1.0"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+        #  livenessProbe:
+        #    httpGet:
+        #      path: /health/live
+        #      port: 8080
+            #  initialDelaySeconds: 5
+            #  periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 5
+            timeoutSeconds: 10
+        #  readinessProbe:
+        #    httpGet:
+        #      path: /health/ready
+        #      port: 8080
+            #  initialDelaySeconds: 5
+            #  periodSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 5
+            timeoutSeconds: 10
+          resources:
+            {}

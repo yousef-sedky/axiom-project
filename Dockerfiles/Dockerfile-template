@@ -1,0 +1,6 @@
+FROM openjdk:8
+MAINTAINER Yousef Sedky
+COPY ./ARTIFACT /usr/src/myapp/ARTIFACT
+WORKDIR /usr/src/myapp
+EXPOSE 8080
+CMD ["java","-jar","ARTIFACT"]

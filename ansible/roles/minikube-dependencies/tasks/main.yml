@@ -1,0 +1,27 @@
+---
+- name: install cask (add on for home brew)
+  command: brew tap caskroom/cask
+
+- name: install docker
+  homebrew_cask:
+    name: docker
+    state: present
+
+- name: run docker
+  command: open /Applications/Docker.app
+
+- name: install virtualbox
+  homebrew_cask:
+    name: virtualbox
+    state: present
+
+- name: install kubectl
+  homebrew:
+    name: kubectl
+    state: present
+
+- name: install helm
+  homebrew:
+    name: kubernetes-helm
+    state: present
+  

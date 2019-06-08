@@ -1,0 +1,6 @@
+FROM openjdk:8
+MAINTAINER Yousef Sedky
+COPY ./countries-assembly-1.0.1.jar /usr/src/myapp/countries-assembly-1.0.1.jar
+WORKDIR /usr/src/myapp
+EXPOSE 8080
+CMD ["java","-jar","/usr/src/myapp/countries-assembly-1.0.1.jar"]
