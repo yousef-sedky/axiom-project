@@ -32,7 +32,7 @@ pipeline {
 
                    echo "Dockerfile: "
                    echo "------------"
-                   cat ../microservices-artifacts/Dockerfile
+                   cat  microservices-artifacts/Dockerfile
                    echo "------------------------------------------------"
                    sleep 2
 
