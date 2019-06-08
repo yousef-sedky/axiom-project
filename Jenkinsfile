@@ -21,7 +21,7 @@ pipeline {
 
 		stage('Docker Build') {
 			steps {
-				withCredentials([usernamePassword(credentialsId: 'docker_username', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+				withCredentials([usernamePassword(credentialsId: 'docker_credintials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
 
 					script {
 							sh """
