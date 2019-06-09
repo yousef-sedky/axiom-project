@@ -52,11 +52,11 @@ pipeline {
 			steps {
 			    script {
                   sh """
-                           cp -r microservices/deployment/${env.BRANCH_NAME}/  microservices-deploy/${env.BRANCH_NAME}
-                           sed -i -e "s/VERSION/$VERSION/g"  microservices-deploy/${env.BRANCH_NAME}/values.yaml
-                           sed -i -e "s/VERSION/$VERSION/g"  microservices-deploy/${env.BRANCH_NAME}/Chart.yaml
-													 
-                           if output=$(helm list | grep axiom-${env.BRANCH_NAME}); then
+                           cp -r microservices/deployment/${env.BRANCH_NAME}/  microservices-deploy/\${env.BRANCH_NAME}
+                           sed -i -e "s/VERSION/$VERSION/g"  microservices-deploy/\${env.BRANCH_NAME}/values.yaml
+                           sed -i -e "s/VERSION/$VERSION/g"  microservices-deploy/\${env.BRANCH_NAME}/Chart.yaml
+
+                           if output=$(helm list | grep axiom-\${env.BRANCH_NAME}); then
 													    echo OK
 													 else
 													  	echo FAIL
