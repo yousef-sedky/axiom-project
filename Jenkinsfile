@@ -56,7 +56,7 @@ pipeline {
                            sed -i -e "s/VERSION/$VERSION/g"  microservices-deploy/${env.BRANCH_NAME}/values.yaml
                            sed -i -e "s/VERSION/$VERSION/g"  microservices-deploy/${env.BRANCH_NAME}/Chart.yaml
 
-                           helm install --name axiom-${env.BRANCH_NAME} -f values.yaml  microservices-deploy/${env.BRANCH_NAME} --namespace ${env.BRANCH_NAME}
+                           helm install --name axiom-${env.BRANCH_NAME}  microservices-deploy/${env.BRANCH_NAME} --namespace ${env.BRANCH_NAME}
 
 													 rm -r  microservices-deploy/${env.BRANCH_NAME}
 
