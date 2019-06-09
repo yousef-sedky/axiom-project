@@ -56,11 +56,11 @@ pipeline {
                            sed -i -e "s/VERSION/$VERSION/g"  microservices-deploy/${env.BRANCH_NAME}/values.yaml
                            sed -i -e "s/VERSION/$VERSION/g"  microservices-deploy/${env.BRANCH_NAME}/Chart.yaml
 													 helm list | grep axiom-${env.BRANCH_NAME}
-                           if [ $? -eq 0 ]; then
+                           if output=$(helm list | grep axiom-${env.BRANCH_NAME}); then
 													    echo OK
 													 else
 													  	echo FAIL
-													 fi                      
+													 fi
 											  	 helm install --name axiom-${env.BRANCH_NAME}  microservices-deploy/${env.BRANCH_NAME} --namespace ${env.BRANCH_NAME}
 													 rm -r  microservices-deploy/${env.BRANCH_NAME}
 
