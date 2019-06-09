@@ -56,16 +56,16 @@ pipeline {
                            sed -i -e "s/VERSION/$VERSION/g"  microservices-deploy/${env.BRANCH_NAME}/values.yaml
                            sed -i -e "s/VERSION/$VERSION/g"  microservices-deploy/${env.BRANCH_NAME}/Chart.yaml
 
-												  # helm list | grep \${env.BRANCH_NAME}
+
 													 counter=$(echo $?)
 													 echo $counter
-													 if [[ "$counter" == "0" ]]; then
+													# if [[ "$counter" == "0" ]]; then
 												    # helm upgrade  axiom-${env.BRANCH_NAME}  microservices-deploy/${env.BRANCH_NAME} --namespace ${env.BRANCH_NAME}  --set image.tag=1.1.0
-														  helm upgrade  axiom-${env.BRANCH_NAME}  microservices-deploy/${env.BRANCH_NAME} --namespace ${env.BRANCH_NAME}  --set image.repository=yousefsedky/countries-assembly
+														#  helm upgrade  axiom-${env.BRANCH_NAME}  microservices-deploy/${env.BRANCH_NAME} --namespace ${env.BRANCH_NAME}  --set image.repository=yousefsedky/countries-assembly
 
-													 else
+													# else
 												  	 helm install --name axiom-${env.BRANCH_NAME}  microservices-deploy/${env.BRANCH_NAME} --namespace ${env.BRANCH_NAME}
-													 fi
+													 #fi
 													 rm -r  microservices-deploy/${env.BRANCH_NAME}
 
                      """
