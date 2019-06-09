@@ -4,12 +4,12 @@
 
 replicaCount: 1
 
-nameOverride: "airports-assembly"
-fullnameOverride: "airports-assembly"
+nameOverride: "airports"
+fullnameOverride: "airports"
 
 
 image:
-  repository: yousefsedky/airports-assembly
+  repository: yousefsedky/airports
   tag: VERSION
   #tag: 1.0.1
   pullPolicy: IfNotPresent

@@ -23,7 +23,6 @@ pipeline {
 		stage('Docker Build') {
 			steps {
 				withCredentials([usernamePassword(credentialsId: 'docker_credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-
 					script {
 							sh """
 
@@ -40,7 +39,7 @@ pipeline {
 									 docker login --username $USERNAME --password $PASSWORD
                    docker build -t yousefsedky/${env.BRANCH_NAME}:$VERSION .
   								 docker push yousefsedky/${env.BRANCH_NAME}:$VERSION
-  								 sudo docker rmi yousefsedky/${env.BRANCH_NAME}:$VERSION
+  								 # docker rmi yousefsedky/${env.BRANCH_NAME}:$VERSION
                    rm -r Dockerfile
 
 							"""

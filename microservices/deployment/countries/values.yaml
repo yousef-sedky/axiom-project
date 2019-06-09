@@ -4,12 +4,12 @@
 
 replicaCount: 1
 
-nameOverride: "countries-assembly"
-fullnameOverride: "countries-assembly"
+nameOverride: "countries"
+fullnameOverride: "countries"
 
 
 image:
-  repository: yousefsedky/countries-assembly
+  repository: yousefsedky/countries
   tag: VERSION
   #tag: 1.0.1
   pullPolicy: IfNotPresent
