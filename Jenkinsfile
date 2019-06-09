@@ -39,25 +39,33 @@ pipeline {
 									 docker login --username $USERNAME --password $PASSWORD
                    docker build -t yousefsedky/${env.BRANCH_NAME}:$VERSION .
   								 docker push yousefsedky/${env.BRANCH_NAME}:$VERSION
-  								 # docker rmi yousefsedky/${env.BRANCH_NAME}:$VERSION
+  								 # docker rmi yousefsedky/${env.BRANCH_NAME}:$VERSION  //still ??
                    rm -r Dockerfile
 
 							"""
 						    }}}}
 
-// ***************** Kubernetes deployment using helm ************************
+// ******************* Kubernetes deployment using helm ************************
 
 
 		stage('Deployment') {
 			steps {
 			    script {
                   sh """
-                      cp -r microservices/deployment/${env.BRANCH_NAME}/  microservices-deploy/${env.BRANCH_NAME}
+                           cp -r microservices/deployment/${env.BRANCH_NAME}/  microservices-deploy/${env.BRANCH_NAME}
                            sed -i -e "s/VERSION/$VERSION/g"  microservices-deploy/${env.BRANCH_NAME}/values.yaml
                            sed -i -e "s/VERSION/$VERSION/g"  microservices-deploy/${env.BRANCH_NAME}/Chart.yaml
 
-                           helm install --name axiom-${env.BRANCH_NAME}  microservices-deploy/${env.BRANCH_NAME} --namespace ${env.BRANCH_NAME}
+												   helm list | grep axiom-${env.BRANCH_NAME}
+													 counter=$(echo $?)
+													 echo counter
+													 if [[ "$counter" == "0" ]]; then
+												    # helm upgrade  axiom-${env.BRANCH_NAME}  microservices-deploy/${env.BRANCH_NAME} --namespace ${env.BRANCH_NAME}  --set image.tag=1.1.0
+														  helm upgrade  axiom-${env.BRANCH_NAME}  microservices-deploy/${env.BRANCH_NAME} --namespace ${env.BRANCH_NAME}  --set image.repository=yousefsedky/countries-assembly
 
+													 else
+												  	 helm install --name axiom-${env.BRANCH_NAME}  microservices-deploy/${env.BRANCH_NAME} --namespace ${env.BRANCH_NAME}
+													 fi
 													 rm -r  microservices-deploy/${env.BRANCH_NAME}
 
                      """
