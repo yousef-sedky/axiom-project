@@ -56,7 +56,7 @@ pipeline {
                            sed -i -e "s/VERSION/$VERSION/g"  microservices-deploy/${env.BRANCH_NAME}/values.yaml
                            sed -i -e "s/VERSION/$VERSION/g"  microservices-deploy/${env.BRANCH_NAME}/Chart.yaml
 
-												   helm list | grep \${env.BRANCH_NAME}
+												  # helm list | grep \${env.BRANCH_NAME}
 													 counter=$(echo $?)
 													 echo counter
 													 if [[ "$counter" == "0" ]]; then
