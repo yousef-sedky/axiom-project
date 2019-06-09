@@ -58,7 +58,7 @@ pipeline {
 
 												  # helm list | grep \${env.BRANCH_NAME}
 													 counter=$(echo $?)
-													 echo counter
+													 echo $counter
 													 if [[ "$counter" == "0" ]]; then
 												    # helm upgrade  axiom-${env.BRANCH_NAME}  microservices-deploy/${env.BRANCH_NAME} --namespace ${env.BRANCH_NAME}  --set image.tag=1.1.0
 														  helm upgrade  axiom-${env.BRANCH_NAME}  microservices-deploy/${env.BRANCH_NAME} --namespace ${env.BRANCH_NAME}  --set image.repository=yousefsedky/countries-assembly
