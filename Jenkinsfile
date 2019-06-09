@@ -55,17 +55,7 @@ pipeline {
                            cp -r microservices/deployment/${env.BRANCH_NAME}/  microservices-deploy/${env.BRANCH_NAME}
                            sed -i -e "s/VERSION/$VERSION/g"  microservices-deploy/${env.BRANCH_NAME}/values.yaml
                            sed -i -e "s/VERSION/$VERSION/g"  microservices-deploy/${env.BRANCH_NAME}/Chart.yaml
-
-
-													 counter=$(echo $?)
-													 echo $counter
-													# if [[ "$counter" == "0" ]]; then
-												    # helm upgrade  axiom-${env.BRANCH_NAME}  microservices-deploy/${env.BRANCH_NAME} --namespace ${env.BRANCH_NAME}  --set image.tag=1.1.0
-														#  helm upgrade  axiom-${env.BRANCH_NAME}  microservices-deploy/${env.BRANCH_NAME} --namespace ${env.BRANCH_NAME}  --set image.repository=yousefsedky/countries-assembly
-
-													# else
-												  	 helm install --name axiom-${env.BRANCH_NAME}  microservices-deploy/${env.BRANCH_NAME} --namespace ${env.BRANCH_NAME}
-													 #fi
+											  	 helm install --name axiom-${env.BRANCH_NAME}  microservices-deploy/${env.BRANCH_NAME} --namespace ${env.BRANCH_NAME}
 													 rm -r  microservices-deploy/${env.BRANCH_NAME}
 
                      """
