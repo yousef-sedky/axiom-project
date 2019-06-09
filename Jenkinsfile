@@ -1,7 +1,7 @@
 pipeline {
 				agent any
 		environment {
-            VERSION= "1.0.1"  // still need to be automated later by autotagging fn.
+            VERSION= "1.1.0"  // still need to be automated later by autotagging fn.
             ARTIFACT="${env.BRANCH_NAME}-assembly-${VERSION}.jar";
 
                 }
