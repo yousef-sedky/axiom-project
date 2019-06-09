@@ -2,7 +2,7 @@ pipeline {
 				agent any
 		environment {
             VERSION= "1.0.1"  // still ??
-            ARTIFACT="${env.BRANCH_NAME}-assembly-{{$VERSION}}.jar";
+            ARTIFACT="${env.BRANCH_NAME}-assembly-$VERSION.jar";
 
                 }
 
