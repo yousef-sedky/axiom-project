@@ -1,10 +1,10 @@
 ---
 
-#- name: install jenkins via helm
-#  command: chdir=$HOME/axiom/jenkins helm install --name axiom -f values.yaml . --namespace jenkins
+- name: install jenkins via helm
+  command: chdir=$HOME/axiom/jenkins helm install --name axiom -f values.yaml . --namespace jenkins
 
-- name: install countries MS via helm
-  command: chdir=$HOME/axiom/microservices/deployment/countries helm install --name axiom-countries -f values.yaml . --namespace countries
+#- name: install countries MS via helm
+#  command: chdir=$HOME/axiom/microservices/deployment/countries helm install --name axiom-countries -f values.yaml . --namespace countries
 
-- name: install airports MS via helm
-  command: chdir=$HOME/axiom/microservices/deployment/airports helm install --name axiom-airports -f values.yaml . --namespace airports
+#- name: install airports MS via helm
+#  command: chdir=$HOME/axiom/microservices/deployment/airports helm install --name axiom-airports -f values.yaml . --namespace airports

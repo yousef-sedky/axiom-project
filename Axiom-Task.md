@@ -101,3 +101,10 @@ http://slachtec.local.airports/airports?full=0
 http://slachtec.local.airports/airports?full=1
 http://slachtec.local.airports/airports/EHAM
 http://slachtec.local.airports/search/NL
+
+# some useful commands for reference
+
+# helm upgrade axiom-airports .  --set image.tag=1.1.0
+# helm history
+# helm list
+#printf $(kubectl get secret --namespace default my-release-jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo
