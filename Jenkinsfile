@@ -55,7 +55,7 @@ pipeline {
                            cp -r microservices/deployment/${env.BRANCH_NAME}/  microservices-deploy/${env.BRANCH_NAME}
                            sed -i -e "s/VERSION/$VERSION/g"  microservices-deploy/${env.BRANCH_NAME}/values.yaml
                            sed -i -e "s/VERSION/$VERSION/g"  microservices-deploy/${env.BRANCH_NAME}/Chart.yaml
-													 helm list | grep axiom-${env.BRANCH_NAME}
+													 
                            if output=$(helm list | grep axiom-${env.BRANCH_NAME}); then
 													    echo OK
 													 else
