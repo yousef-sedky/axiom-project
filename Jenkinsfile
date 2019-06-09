@@ -52,9 +52,9 @@ pipeline {
 			steps {
 			    script {
                   sh """
-                           cp -r microservices/deployment/${env.BRANCH_NAME}/  microservices-deploy/${env.BRANCH_NAME}
-                           sed -i -e "s/VERSION/$VERSION/g"  microservices-deploy/${env.BRANCH_NAME}/values.yaml
-                           sed -i -e "s/VERSION/$VERSION/g"  microservices-deploy/${env.BRANCH_NAME}/Chart.yaml
+                           cp -r microservices/deployment/${env.BRANCH_NAME}/  "microservices-deploy/${env.BRANCH_NAME}"
+                           sed -i -e "s/VERSION/$VERSION/g"  "microservices-deploy/${env.BRANCH_NAME}/values.yaml"
+                           sed -i -e "s/VERSION/$VERSION/g"  "microservices-deploy/${env.BRANCH_NAME}/Chart.yaml"
 
                            flag=$(helm list | grep axiom-${env.BRANCH_NAME} | grep DEPLOYED | awk '{print $8}')
 									         echo $flag
