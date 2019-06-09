@@ -2,21 +2,24 @@
 # Simple script to check the blue/green deployment working successfully #
 #########################################################################
 
-# Open 3 MAC terminal tabs
+# Open 2 MAC terminal tabs
 # -------------------------
 
 # 1st tab enter the below command
 # -------------------------------
-#   watch -n 5 ./bluegreendep.sh
+#   watch -n 5 ./blue_green_dep.sh
 
-# Note: if watch not installed : brew install watch
+# Note: if watch not installed on your MAC : brew install watch
 
 # 2nd tab enter the below command
 # -------------------------------
-#   tail -f bluegreendep_logs.txt
+#   tail -f blue_green_dep_logs.txt
 
-# 3rd tab update the deployment
-# -----------------------------
+# Run the pipeline in jenkins under the airport branch.
+#
+
+
+####### SOME USEFUL COMMANDS ########
 #   helm history axiom-airports
 #   helm list
 #   kubectl get pods --all-namespaces
