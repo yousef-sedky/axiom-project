@@ -58,10 +58,10 @@ pipeline {
                            sed -i -e "s/VERSION/$VERSION/g"  microservices-deploy/${env.BRANCH_NAME}/Chart.yaml
                            helm list | grep axiom-${env.BRANCH_NAME} | grep DEPLOYED
 													 echo "\${?}"
-													 if [ \$? == 0]
+													 if [ \$? == 1]
 													 then
 													 	 helm upgrade  axiom-${env.BRANCH_NAME}  microservices-deploy/${env.BRANCH_NAME} --namespace ${env.BRANCH_NAME}  --set image.tag=$VERSION
-                             echo " UPGRADE DEPLOYMENT "
+                             echo " UPGRADED DEPLOYMENT "
 													 else
 													  	helm install --name axiom-${env.BRANCH_NAME}  microservices-deploy/${env.BRANCH_NAME} --namespace ${env.BRANCH_NAME}
                               echo " NEW DEPLOYMENT "
