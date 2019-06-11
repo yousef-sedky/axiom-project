@@ -58,7 +58,8 @@ pipeline {
                            sed -i -e "s/VERSION/$VERSION/g"  microservices-deploy/${env.BRANCH_NAME}/Chart.yaml
                            helm list | grep axiom-${env.BRANCH_NAME} | grep DEPLOYED
 													 echo "\${?}"
-													 if ['echo "\${?}"' == '0']
+												#	 if ['echo "\${?}"' == '0']
+												   if [['echo "\${?}"' == '0']]
 													 then
 													 	 helm upgrade  axiom-${env.BRANCH_NAME}  microservices-deploy/${env.BRANCH_NAME} --namespace ${env.BRANCH_NAME}  --set image.tag=$VERSION
                              echo " UPGRADED DEPLOYMENT "
